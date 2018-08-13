@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="/static/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/navbar.css" rel="stylesheet">
+		<title>航天紫光短信管理系统</title>
+  </head>
+
+	<body>
+    <div class="container">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">短信通知</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li {% if IsAlert %} class="active" {% endif %}><a href=alert>故障通知</a></li>
+							<li {% if IsAlertEnd %} class="active" {% endif %}><a href=alertEnd>故障恢复</a></li>
+							<li {% if IsChange %} class="active" {% endif %}><a href=change>变更通知</a></li>
+							<li {% if IsChangeEnd %} class="active" {% endif %}><a href=changeEnd>变更结束</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="/userGuid">使用说明</a></li>
+              {% if IsLogin %}
+							<li><a href=login>退出</a></li>
+							{% else %}
+							<li><a href=login>登录</a></li>
+							{% endif %}
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</nav>
+
+			<div class="jumbotron">
+				 <h3>内容预览：</h3>
+				 <div id="app">
+					 {% block form%}
+	         {% endblock%}
+				 </div>
+		  </div>
+		</div> <!-- /container -->
+
+		<script src="/static/vue.min.js"></script>
+		{% block vue%}
+		{% endblock%}
+  </body>
+</html>

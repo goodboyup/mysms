@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% block form%}
+<form  method="POST" action="/submit">
+	<p>[航天云网运维中心]故障通知：运维巡检中发现，[<b>{{'{{ name  }}'}}</b>]系统于<b>[{{'{{ time }}'}}</b>] 发生故障，现象为[<b>{{'{{ coontext }}'}}</b>], 已联系[<b>{{'{{ unit }}'}}</b>]单位工程师进行处理。</p>
+	<h3>内容输入：</h3>
+	<input name='name' v-model="name">
+	<input name='time' v-model="time">
+	<input name='context' v-model="coontext">
+	<input name='unit' v-model="unit">
+	<p></p>
+	<h3>请输入接收短信的电话号码</h3>
+	<p>如需发送多个电话号码，请在两个号码之间以逗号','分隔</p>
+	<input  class="form-control" type="textaera" name="phoneNum" >
+	<p></p>
+	<input class="btn btn-lg btn-primary" type="submit" value="短信发送" />
+</form>
+{% endblock%}
+
+{% block vue%}
+<script>
+	new Vue({
+		el: '#app',
+		data: {
+			name : '字段1应用系统名称',
+			time : '字段2故障时间',
+			coontext : '字段3描述故障现象',
+			unit : '字段4责任单位',
+		}
+	})
+</script>
+{% endblock%}
